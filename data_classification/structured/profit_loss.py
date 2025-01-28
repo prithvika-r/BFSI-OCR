@@ -5,11 +5,7 @@ import pytesseract
 from PIL import Image
 import streamlit as st
 import os
-if platform.system() == 'Windows':
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-else:
-    # For Linux/Streamlit Cloud environment
-    pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
 def extract_profit_loss_data(image_path, csv_path):
     try:
         image = Image.open(image_path)
