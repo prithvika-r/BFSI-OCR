@@ -229,9 +229,7 @@ if data_type:
                     with st.spinner("Creating visualizations..."):
                         create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
 
-                        # Display the visualizations (images) in Streamlit
-                        st.image(visualization_paths["bar_chart_path"])
-                        st.image(visualization_paths["pie_chart_path"])
+                       
 
 
 
