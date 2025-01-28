@@ -9,8 +9,6 @@ import os
 def extract_profit_loss_data(image_path, csv_path):
     try:
         image = Image.open(image_path)
-        ocr_result = pytesseract.image_to_string(image)
-        lines = ocr_result.split("\n")
         ocr_result = pytesseract.image_to_string(image.convert("L"))
         lines = ocr_result.split("\n")
         data = []
@@ -32,8 +30,8 @@ def extract_profit_loss_data(image_path, csv_path):
             if "2015" in clean_line and "2016" in clean_line and "2017" in clean_line:
                 start_processing = True
                 continue
-            if start_processing and clean_line:  
-                if contains_numeric(clean_line): 
+            if start_processing and clean_line:
+                if contains_numeric(clean_line):
                     data.append(clean_line.split())
                 else:
                     data.append([clean_line, "", "", ""])
@@ -41,11 +39,12 @@ def extract_profit_loss_data(image_path, csv_path):
         header = ["Description", "2015", "2016", "2017"]
         rows = []
         description = ""
+
         for line in data:
             if not line or len(line) < 4:
                 continue
             if len(line) > 1:
-                description = " ".join(line[:-3])  
+                description = " ".join(line[:-3])
                 row = [description] + [str(value) if value.replace('.', '', 1).isdigit() else value for value in line[-3:]]
                 rows.append(row)
             else:
@@ -54,49 +53,47 @@ def extract_profit_loss_data(image_path, csv_path):
                     rows.append(row)
 
         df = pd.DataFrame(rows, columns=header)
-        df = df.dropna(how="all") 
+        df = df.dropna(how="all")
         df = df.dropna(subset=['Description', '2015', '2016', '2017'], how='any')
         df.to_csv(csv_path, index=False)
-        return df  
+        return df
 
     except Exception as e:
-        print(f"Error occurred in OCR extraction: {e}")
+        st.error(f"Error occurred in OCR extraction: {e}")
         return None
 
+
 def store_profit_loss_to_postgresql(df, db_name, user, password, host, port, table_name):
-    if isinstance(df, pd.DataFrame):
+    if isinstance(df, pd.DataFrame) and not df.empty:
         try:
             engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db_name}')
             df.to_sql(table_name, engine, if_exists='replace', index=False)
-            print(f"Data stored in PostgreSQL table: {table_name}")
+            st.success(f"Data successfully stored in PostgreSQL table: {table_name}")
         except Exception as e:
-            print(f"Error occurred while storing data in PostgreSQL: {e}")
+            st.error(f"Error occurred while storing data in PostgreSQL: {e}")
     else:
-        print("The data provided is not a pandas DataFrame.")
+        st.error("The data provided is not valid or empty.")
 
-def fetch_data_from_postgresql(db_name, user, password, host, port, table_name):
-    try:
-        engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db_name}')
-        query = f'SELECT * FROM {table_name};'
-        df_from_db = pd.read_sql(query, engine)
-        return df_from_db
-    except Exception as e:
-        print(f"Error fetching data from PostgreSQL: {e}")
-        return None
 
 def create_visualizations(df, bar_chart_path, pie_chart_path):
+    if df is None or df.empty:
+        st.error("No data available for visualization.")
+        return
+
     os.makedirs(os.path.dirname(bar_chart_path), exist_ok=True)
     os.makedirs(os.path.dirname(pie_chart_path), exist_ok=True)
 
     required_columns = ['Description', '2015', '2016', '2017']
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
-        raise ValueError(f"Missing columns: {', '.join(missing_columns)}")
-    
+        st.error(f"Missing columns for visualization: {', '.join(missing_columns)}")
+        return
+
     df = df.dropna(subset=['2015', '2016', '2017'])
     df.set_index('Description', inplace=True)
     df[['2015', '2016', '2017']] = df[['2015', '2016', '2017']].apply(pd.to_numeric, errors='coerce')
 
+    # Bar Chart
     plt.figure(figsize=(12, 6))
     df[['2015', '2016', '2017']].plot(kind='line', marker='o', linestyle='-', title='Yearly Financial Data')
     plt.ylabel('Amount')
@@ -105,20 +102,13 @@ def create_visualizations(df, bar_chart_path, pie_chart_path):
     plt.grid(True)
     plt.tight_layout()
     
-    # Display the chart in Streamlit
     st.pyplot(plt)
-
-    # Save the bar chart as a PNG image
     plt.savefig(bar_chart_path)
     plt.close()
 
-    # Pie chart visualization
+    # Pie Chart
     df[['2015', '2016', '2017']].sum().plot(kind='pie', autopct='%1.1f%%', figsize=(8, 8), title='Yearly Financial Data - Pie Chart')
     plt.tight_layout()
-
-    # Display the pie chart in Streamlit
     st.pyplot(plt)
-    
-    # Save the pie chart as a PNG image
     plt.savefig(pie_chart_path)
     plt.close()
