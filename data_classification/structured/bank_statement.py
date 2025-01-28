@@ -54,21 +54,16 @@ import seaborn as sns
 
 def create_visualizationss(df, bar_chart_path, pie_chart_path):
     try:
-        # Barplot with thicker bars and no legend
+        # Barplot
         plt.figure(figsize=(12, 6))
-        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description", width=3)
+        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description")
         plt.title("Amount per Description", fontsize=16)
         plt.xlabel("Description", fontsize=14)
         plt.ylabel("Balance", fontsize=14)
         plt.xticks(rotation=45, ha="right")
-        
-        # Remove legend (color labels)
-        plt.legend().set_visible(False)
-        
         plt.tight_layout()
         plt.savefig(bar_chart_path)
         plt.show()
-
         # Pie Chart
         plt.figure(figsize=(8, 8))
         plt.pie(
@@ -82,6 +77,11 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
         plt.tight_layout()
         plt.savefig(pie_chart_path)
         plt.show()
+        plt.close('all')
+        print(f"Visualizations saved: Bar chart ({bar_chart_path}), Pie chart ({pie_chart_path})")
+    except Exception as e:
+        print(f"Error creating visualizations: {e}")
+
 
         # Close all plots after saving
         plt.close('all')
