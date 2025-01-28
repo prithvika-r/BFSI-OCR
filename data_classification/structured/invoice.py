@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sqlalchemy import create_engine
+from sqlalchemy.exc import OperationalError
 
 def extract_from_description_to_csv(image_path, csv_output_path):
     image = Image.open(image_path)
@@ -37,9 +38,7 @@ def extract_from_description_to_csv(image_path, csv_output_path):
     print(f"Extracted data saved to {csv_output_path}")
     return df
 
-import pandas as pd
-from sqlalchemy import create_engine
-from sqlalchemy.exc import OperationalError
+
 
 def store_csv_to_postgresql(csv_file_path, db_name, user, password, host, port, table_name):
     # Try to establish a connection to PostgreSQL first
@@ -47,14 +46,9 @@ def store_csv_to_postgresql(csv_file_path, db_name, user, password, host, port, 
     engine = create_engine(connection_string)
 
     try:
-        # Read the CSV file into a pandas DataFrame
         df = pd.read_csv(csv_file_path)
-        
-        # Check if DataFrame is empty
         if df.empty:
             raise ValueError("The CSV file is empty or invalid.")
-
-        # Store DataFrame into the PostgreSQL database
         df.to_sql(table_name, engine, if_exists='replace', index=False)
         print(f"Data from {csv_file_path} successfully stored into {table_name} table in PostgreSQL.")
     except ValueError as ve:
@@ -63,8 +57,6 @@ def store_csv_to_postgresql(csv_file_path, db_name, user, password, host, port, 
         print(f"Error connecting to PostgreSQL: {oe}")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-
 
 def create_visualizations(df, bar_chart_path, pie_chart_path):
     # Bar Chart Visualization
@@ -82,6 +74,6 @@ def create_visualizations(df, bar_chart_path, pie_chart_path):
     plt.title("Distribution of Amounts", fontsize=16)
     plt.tight_layout()
     plt.savefig(pie_chart_path)
-
+    
     plt.show()
 
