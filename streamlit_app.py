@@ -1,4 +1,4 @@
-import os
+    import os
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -209,7 +209,7 @@ if data_type:
             }
 
                     with st.spinner("Creating visualizations..."):
-                    create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
+                        create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
                 else:
                 st.error("No valid data extracted for further processing.")
 
