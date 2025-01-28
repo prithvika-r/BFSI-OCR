@@ -12,6 +12,7 @@ from data_classification.semi_structured.api_json import process_json_data, crea
 from data_classification.unstructured.unstructure import process_data
 import pytesseract
 import os
+from sqlalchemy import create_engine
 
 # Set the Tesseract path explicitly (for Linux or cloud-based environments)
 if os.name == 'posix':  # Linux-based systems (e.g., Streamlit Cloud)
