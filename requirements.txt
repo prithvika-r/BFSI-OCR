@@ -3,10 +3,8 @@ pandas==2.1.1              # For data manipulation
 numpy==1.26.0              # For numerical operations
 sqlalchemy==2.0.20         # For database interaction
 pdfplumber==0.9.0          # For working with PDFs
-Pillow==9.4.0             # For image handling
 matplotlib==3.8.0          # For data visualization
-seaborn==0.12.2            # For advanced visualizations
-torch==2.4.0              # For PyTorch-based machine learning
+seaborn==0.12.2            # For advanced visualizations             
 transformers==4.34.0       # For text classification using BERT
 psycopg2-binary==2.9.8     # For PostgreSQL database connections
 tqdm==4.66.1               # For progress bars
@@ -14,5 +12,6 @@ scikit-learn==1.3.1        # For any machine learning preprocessing
 altair==5.0.1              # For advanced visualizations in Streamlit
 opencv-python-headless==4.8.0.76  #For advanced image processing
 regex
-psycopg2-binary>=2.9.8,<3.0
+torch==2.4.0      # For PyTorch-based machine learning
+Pillow==9.4.0   # For image handling
 
