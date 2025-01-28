@@ -49,15 +49,22 @@ def store_csv_to_postgresql(csv_file_path, db_name, user, password, host, port, 
         print(f"Data from {csv_file_path} successfully stored into {table_name} table in PostgreSQL.")
     except Exception as e:
         print(f"Error storing data from {csv_file_path} into PostgreSQL: {e}")
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 def create_visualizationss(df, bar_chart_path, pie_chart_path):
     try:
-        # Barplot with thicker bars
+        # Barplot with thicker bars and no legend
         plt.figure(figsize=(12, 6))
-        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description", width=1.2)  # Increase width
+        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description", width=1.2)
         plt.title("Amount per Description", fontsize=16)
         plt.xlabel("Description", fontsize=14)
         plt.ylabel("Balance", fontsize=14)
         plt.xticks(rotation=45, ha="right")
+        
+        # Remove legend (color labels)
+        plt.legend().set_visible(False)
+        
         plt.tight_layout()
         plt.savefig(bar_chart_path)
         plt.show()
@@ -81,3 +88,4 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
         print(f"Visualizations saved: Bar chart ({bar_chart_path}), Pie chart ({pie_chart_path})")
     except Exception as e:
         print(f"Error creating visualizations: {e}")
+
