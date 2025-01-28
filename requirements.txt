@@ -1,4 +1,4 @@
-streamlit>=2.0.0         # For building the Streamlit app
+streamlit>=1.41.1         # For building the Streamlit app
 pandas==2.1.1              # For data manipulation
 numpy==1.26.0              # For numerical operations
 sqlalchemy==2.0.20         # For database interaction
