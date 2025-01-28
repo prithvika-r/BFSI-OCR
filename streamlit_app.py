@@ -176,52 +176,43 @@ if data_type:
                     with open(image_path, "wb") as f:
                         f.write(uploaded_file.getbuffer())
 
-            # Define the path for saving CSV
-                csv_output_path = "data/profit_loss_data.csv"
-                profit_loss_data = extract_profit_loss_data(image_path, csv_output_path)
+                    csv_output_path = "data/profit_loss_data.csv"
+                    profit_loss_data = extract_profit_loss_data(image_path, csv_output_path)
 
-                st.success(f"Extracted profit and loss data saved to {csv_output_path}")
-        
-        # Display extracted data as DataFrame in Streamlit
-                st.write("### Extracted Profit and Loss Data")
-                st.dataframe(profit_loss_data)
+                if not profit_loss_data.empty:
+                    st.success(f"Extracted profit and loss data saved to {csv_output_path}")
+                    st.write("### Extracted Profit and Loss Data")
+                    st.dataframe(profit_loss_data)
 
-        # Add a download button for CSV file
-                st.download_button(
-                    label="Download CSV",
-                    data=open(csv_output_path, "rb").read(),
-                    file_name="profit_loss_data.csv",
-                    mime="text/csv"
+                    st.download_button(
+                label="Download CSV",
+                data=open(csv_output_path, "rb").read(),
+                file_name="profit_loss_data.csv",
+                mime="text/csv"
             )
 
-        # Define database configuration
-                db_config = {
-            "db_name": "profitloss_db",
-            "user": "postgres",
-            "password": "newpassword",
-            "host": "localhost",
-            "port": "5432",
-            "table_name": "profitloss_table"
-        }
+                    db_config = {
+                "db_name": "profitloss_db",
+                "user": "postgres",
+                "password": "newpassword",
+                "host": "localhost",
+                "port": "5432",
+                "table_name": "profitloss_table"
+            }
 
-                with st.spinner("Storing data in the database..."):
-                    store_profit_loss_to_postgresql(profit_loss_data, **db_config)
+                    with st.spinner("Storing data in the database..."):
+                        store_profit_loss_to_postgresql(profit_loss_data, **db_config)
 
-                st.success(f"Profit and Loss data successfully stored in the PostgreSQL database ({db_config['table_name']})")
-
-        # Paths for visualizations
-                visualization_paths = {
+                    visualization_paths = {
                 "bar_chart_path": "data/profit_loss_bar_chart.png",
                 "pie_chart_path": "data/profit_loss_pie_chart.png"
-        }
+            }
 
-        # Create and display visualizations
-                with st.spinner("Creating visualizations..."):
+                    with st.spinner("Creating visualizations..."):
                     create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
+                else:
+                st.error("No valid data extracted for further processing.")
 
-            # Display the visualizations (images) in Streamlit
-                    st.image(visualization_paths["bar_chart_path"])
-                    st.image(visualization_paths["pie_chart_path"])
 
 
 
