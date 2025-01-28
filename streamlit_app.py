@@ -207,7 +207,7 @@ if data_type:
                     visualization_paths = {
                         "bar_chart_path": "data/profit_loss_bar_chart.png",
                         "pie_chart_path": "data/profit_loss_pie_chart.png"
-                     }
+                        }
                 with st.spinner("Creating visualizations..."):
                     create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
 
