@@ -199,7 +199,7 @@ if data_type:
                                 }
 
                         with st.spinner("Storing data in the database..."):
-                            store_profit_loss_to_postgresql(profit_loss_data, **db_config)
+                        store_profit_loss_to_postgresql(profit_loss_data, **db_config)
 
                             visualization_paths = {
                             "bar_chart_path": "data/profit_loss_bar_chart.png",
@@ -207,7 +207,7 @@ if data_type:
                             }
 
                         with st.spinner("Creating visualizations..."):
-                            create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
+                        create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
 
 
 
