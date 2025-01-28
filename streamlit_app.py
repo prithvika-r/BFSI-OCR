@@ -168,61 +168,61 @@ if data_type:
                     visualize_payslip_data(csv_output_path)
 					
    	    elif data_choice == "Profit and Loss":
-    	st.subheader("Structured Data: Profit and Loss OCR Upload")
-   		uploaded_file = st.file_uploader("Upload a Profit and Loss Image", type=["jpg", "jpeg", "png"])
+    	    st.subheader("Structured Data: Profit and Loss OCR Upload")
+   		    uploaded_file = st.file_uploader("Upload a Profit and Loss Image", type=["jpg", "jpeg", "png"])
 
-		if uploaded_file:
-            with st.spinner("Processing uploaded file..."):
- 		        image_path = "uploaded_profit_loss.png"
-			    with open(image_path, "wb") as f:
- 			     f.write(uploaded_file.getbuffer())
+		    if uploaded_file:
+                    with st.spinner("Processing uploaded file..."):
+ 		            image_path = "uploaded_profit_loss.png"
+			        with open(image_path, "wb") as f:
+ 			            f.write(uploaded_file.getbuffer())
 
 		            # Define the path for saving CSV
-		        csv_output_path = "data/profit_loss_data.csv"
-		        profit_loss_data = extract_profit_loss_data(image_path, csv_output_path)
+		            csv_output_path = "data/profit_loss_data.csv"
+	                profit_loss_data = extract_profit_loss_data(image_path, csv_output_path)
 
-		        st.success(f"Extracted profit and loss data saved to {csv_output_path}")
+		            st.success(f"Extracted profit and loss data saved to {csv_output_path}")
         
 		        # Display extracted data as DataFrame in Streamlit
-		        st.write("### Extracted Profit and Loss Data")
-	        	st.dataframe(profit_loss_data)
+		            st.write("### Extracted Profit and Loss Data")
+	        	    st.dataframe(profit_loss_data)
 	
 		        # Add a download button for CSV file
-	        	st.download_button(
-		        label="Download CSV",
-		        data=open(csv_output_path, "rb").read(),
-  	        	file_name="profit_loss_data.csv",
- 	         	mime="text/csv"
-	       		 )
+	        	    st.download_button(
+		            label="Download CSV",
+		            data=open(csv_output_path, "rb").read(),
+  	        	    file_name="profit_loss_data.csv",
+ 	         	    mime="text/csv"
+	       		     )
 
         # Define database configuration
-	        	db_config = {
-	   	    	"db_name": "profitloss_db",
-	        	"user": "postgres",
-		        "password": "newpassword",
-		        "host": "localhost",
-	        	"port": "5432",
-		        "table_name": "profitloss_table"
- 		    }
+	        	    db_config = {
+                        "db_name": "profitloss_db",
+                        "user": "postgres",
+                        "password": "newpassword",
+                        "host": "localhost",
+                        "port": "5432",
+                        "table_name": "profitloss_table"
+ 		            }
 	
-		    with st.spinner("Storing data in the database..."):
-		     	store_profit_loss_to_postgresql(profit_loss_data, **db_config)
-	
-		    st.success(f"Profit and Loss data successfully stored in the PostgreSQL database ({db_config['table_name']})")
-	
-        	# Paths for visualizations
-	  	    visualization_paths = {
-	        	    "bar_chart_path": "data/profit_loss_bar_chart.png",
-	        	    "pie_chart_path": "data/profit_loss_pie_chart.png"
-	        	}
+                    with st.spinner("Storing data in the database..."):
+                        store_profit_loss_to_postgresql(profit_loss_data, **db_config)
+            
+                    st.success(f"Profit and Loss data successfully stored in the PostgreSQL database ({db_config['table_name']})")
+            
+                    # Paths for visualizations
+                    visualization_paths = {
+                            "bar_chart_path": "data/profit_loss_bar_chart.png",
+                            "pie_chart_path": "data/profit_loss_pie_chart.png"
+                        }
 
- 	       # Create and display visualizations
-		    with st.spinner("Creating visualizations..."):
-		        create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
-	
- 		           # Display the visualizations (images) in Streamlit
- 	        st.image(visualization_paths["bar_chart_path"])
- 	   	    st.image(visualization_paths["pie_chart_path"])
+                # Create and display visualizations
+                    with st.spinner("Creating visualizations..."):
+                        create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
+            
+                        # Display the visualizations (images) in Streamlit
+                    st.image(visualization_paths["bar_chart_path"])
+                    st.image(visualization_paths["pie_chart_path"])
 
 
         elif data_choice == "Pdf processing":
