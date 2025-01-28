@@ -57,8 +57,8 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
         # Barplot
         plt.figure(figsize=(12, 6))
         sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description")
-        plt.title("Amount per Description", fontsize=16)
-        plt.xlabel("Description", fontsize=14)
+        plt.title("Amount per Description", fontsize=20)
+        plt.xlabel("Description", fontsize=20)
         plt.ylabel("Balance", fontsize=14)
         plt.xticks(rotation=45, ha="right")
         plt.tight_layout()
@@ -73,7 +73,7 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
             startangle=140,
             colors=plt.cm.Paired.colors
         )
-        plt.title("Distribution of Amounts", fontsize=16)
+        plt.title("Distribution of Amounts", fontsize=20)
         plt.tight_layout()
         plt.savefig(pie_chart_path)
         plt.show()
