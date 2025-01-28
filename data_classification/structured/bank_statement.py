@@ -54,14 +54,22 @@ import seaborn as sns
 
 def create_visualizationss(df, bar_chart_path, pie_chart_path):
     try:
-        # Barplot
-        plt.figure(figsize=(12, 10))
-        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description", width=4)
-        plt.title("Amount per Description", fontsize=20)
-        plt.xlabel("Description", fontsize=20)
+        # Barplot with controlled bar width and reduced spacing
+        plt.figure(figsize=(12, 6))
+        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description", width=0.8)
+        
+        plt.title("Amount per Description", fontsize=16)
+        plt.xlabel("Description", fontsize=14)
         plt.ylabel("Balance", fontsize=14)
         plt.xticks(rotation=45, ha="right")
+        
+        # Add the legend outside the plot
+        plt.legend(title="Description", bbox_to_anchor=(1.05, 1), loc='upper left')
+        
+        # Adjust layout to prevent overlap
         plt.tight_layout()
+
+        # Save bar chart and display
         plt.savefig(bar_chart_path)
         plt.show()
         # Pie Chart
