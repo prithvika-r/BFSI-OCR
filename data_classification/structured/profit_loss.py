@@ -10,6 +10,7 @@ def extract_profit_loss_data(image_path, csv_path):
     try:
         image = Image.open(image_path)
         ocr_result = pytesseract.image_to_string(image)
+        print(f"OCR Result:\n{ocr_result}")  # Add this line to debug the OCR result
         lines = ocr_result.split("\n")
         ocr_result = pytesseract.image_to_string(image.convert("L"))
         lines = ocr_result.split("\n")
@@ -35,6 +36,7 @@ def extract_profit_loss_data(image_path, csv_path):
                     data.append(clean_line.split())
                 else:
                     data.append([clean_line, "", "", ""])
+        print(f"Processed Data: {data}")  # Add this line to check data before creating DataFrame
         header = ["Description", "2015", "2016", "2017"]
         rows = []
         description = ""
@@ -50,6 +52,7 @@ def extract_profit_loss_data(image_path, csv_path):
                     row = [line[0]] + [str(value) if value.replace('.', '', 1).isdigit() else value for value in line[1:]]
                     rows.append(row)
         df = pd.DataFrame(rows, columns=header)
+        print(f"DataFrame created: {df.head()}")  # Check the DataFrame before saving
         df = df.dropna(how="all") 
         df = df.dropna(subset=['Description', '2015', '2016', '2017'], how='any')
         df.to_csv(csv_path, index=False)
