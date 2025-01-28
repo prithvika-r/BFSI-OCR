@@ -51,9 +51,9 @@ def store_csv_to_postgresql(csv_file_path, db_name, user, password, host, port, 
         print(f"Error storing data from {csv_file_path} into PostgreSQL: {e}")
 def create_visualizationss(df, bar_chart_path, pie_chart_path):
     try:
-        # Barplot
+        # Barplot with thicker bars
         plt.figure(figsize=(12, 6))
-        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description")
+        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description", width=1.2)  # Increase width
         plt.title("Amount per Description", fontsize=16)
         plt.xlabel("Description", fontsize=14)
         plt.ylabel("Balance", fontsize=14)
@@ -61,6 +61,7 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
         plt.tight_layout()
         plt.savefig(bar_chart_path)
         plt.show()
+
         # Pie Chart
         plt.figure(figsize=(8, 8))
         plt.pie(
@@ -74,6 +75,8 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
         plt.tight_layout()
         plt.savefig(pie_chart_path)
         plt.show()
+
+        # Close all plots after saving
         plt.close('all')
         print(f"Visualizations saved: Bar chart ({bar_chart_path}), Pie chart ({pie_chart_path})")
     except Exception as e:
