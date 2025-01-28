@@ -56,7 +56,7 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
     try:
         # Barplot with controlled bar width and reduced spacing
         plt.figure(figsize=(12, 6))
-        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description", width=3)
+        sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description", width=0.9)
         
         plt.title("Amount per Description", fontsize=16)
         plt.xlabel("Description", fontsize=14)
