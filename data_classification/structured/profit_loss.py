@@ -6,7 +6,7 @@ from PIL import Image
 import streamlit as st
 import os
 if platform.system() == 'Windows':
-    pytesseract.pytesseract.tesseract_cmd = r'C:\\Tesseract-OCR\\tesseract.exe'
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 else:
     # For Linux/Streamlit Cloud environment
     pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
