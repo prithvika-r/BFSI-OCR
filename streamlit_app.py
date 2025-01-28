@@ -178,7 +178,7 @@ if data_type:
                             csv_output_path = "data/profit_loss_data.csv"
                             profit_loss_data = extract_profit_loss_data(image_path, csv_output_path)
 
-                         if not profit_loss_data.empty:
+                    if not profit_loss_data.empty:
                             st.write("### Extracted Profit and Loss Data")
                             st.dataframe(profit_loss_data)
 
