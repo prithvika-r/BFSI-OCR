@@ -211,7 +211,7 @@ if data_type:
                     with st.spinner("Creating visualizations..."):
                         create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
                 else:
-                st.error("No valid data extracted for further processing.")
+                    st.error("No valid data extracted for further processing.")
 
 
 
