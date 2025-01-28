@@ -79,6 +79,7 @@ def fetch_data_from_postgresql(db_name, user, password, host, port, table_name):
         return None
 
 def create_visualizations(df, bar_chart_path, pie_chart_path):
+    print(f"DataFrame columns: {df.columns}")  # Add this line for debugging
     os.makedirs(os.path.dirname(bar_chart_path), exist_ok=True)
     os.makedirs(os.path.dirname(pie_chart_path), exist_ok=True)
     required_columns = ['Description', '2015', '2016', '2017']
@@ -102,6 +103,6 @@ def create_visualizations(df, bar_chart_path, pie_chart_path):
     plt.tight_layout()
     st.pyplot(plt)
     plt.savefig(pie_chart_path)  
-    plt.close()
+    plt.close() 
 
 
