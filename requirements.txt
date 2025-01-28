@@ -16,5 +16,7 @@ torch==2.4.0      # For PyTorch-based machine learning
 Pillow==11.1.0  # For image handling
 SQLAlchemy>=1.4.0
 psycopg2-binary>=2.9.1
+pytesseract
+
 
 
