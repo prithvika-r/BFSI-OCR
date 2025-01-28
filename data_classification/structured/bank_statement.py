@@ -55,7 +55,7 @@ import seaborn as sns
 def create_visualizationss(df, bar_chart_path, pie_chart_path):
     try:
         # Barplot
-        plt.figure(figsize=(12, 6))
+        plt.figure(figsize=(12, 10))
         sns.barplot(data=df, x="Description", y="Balance", palette="viridis", errorbar=None, hue="Description")
         plt.title("Amount per Description", fontsize=20)
         plt.xlabel("Description", fontsize=20)
