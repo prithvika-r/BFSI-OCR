@@ -180,36 +180,37 @@ if data_type:
                     csv_output_path = "data/profit_loss_data.csv"
                     profit_loss_data = extract_profit_loss_data(image_path, csv_output_path)
 
-                st.success(f"Extracted profit and loss data saved to {csv_output_path}")
-                st.write("### Extracted Profit and Loss Data")
-                st.dataframe(profit_loss_data)
+                    st.success(f"Extracted profit and loss data saved to {csv_output_path}")
+                    st.write("### Extracted Profit and Loss Data")
+                    st.dataframe(profit_loss_data)
 
-                st.download_button(
+                    st.download_button(
                     label="Download CSV",
                     data=open(csv_output_path, "rb").read(),
                     file_name="profit_loss_data.csv",
                     mime="text/csv"
-                )
+                        )
 
-                db_config = {
+                    db_config = {
                     "db_name": "profitloss_db",
                     "user": "postgres",
                     "password": "newpassword",
                     "host": "localhost",
-                    "port": "5432",
+                     "port": "5432",
                     "table_name": "profitloss_table"
-                }
+                        }
                 with st.spinner("Storing data in the database..."):
                     store_profit_loss_to_postgresql(csv_output_path, **db_config)
 
-                st.success(f"Profit and Loss data successfully stored in the PostgreSQL database ({db_config['table_name']})")
+                    st.success(f"Profit and Loss data successfully stored in the PostgreSQL database ({db_config['table_name']})")
 
-                visualization_paths = {
-                    "bar_chart_path": "data/profit_loss_bar_chart.png",
-                    "pie_chart_path": "data/profit_loss_pie_chart.png"
-                }
+                    visualization_paths = {
+                        "bar_chart_path": "data/profit_loss_bar_chart.png",
+                        "pie_chart_path": "data/profit_loss_pie_chart.png"
+                     }
                 with st.spinner("Creating visualizations..."):
                     create_visualizations(profit_loss_data, visualization_paths["bar_chart_path"], visualization_paths["pie_chart_path"])
+
 
 
         elif data_choice == "Pdf processing":
