@@ -10,6 +10,14 @@ from data_classification.structured.profit_loss import extract_profit_loss_data,
 from data_classification.structured.pdf_processing import convert_pdf_to_csv, save_csv, store_data_in_db, generate_debit_credit_visualizations
 from data_classification.semi_structured.api_json import process_json_data, create_json_visualizations
 from data_classification.unstructured.unstructure import process_data
+import pytesseract
+import os
+
+# Set the Tesseract path explicitly (for Linux or cloud-based environments)
+if os.name == 'posix':  # Linux-based systems (e.g., Streamlit Cloud)
+    pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'  # Update this path accordingly
+elif os.name == 'nt':  # For Windows
+    pytesseract.pytesseract.tesseract_cmd = r'C:\\Tesseract-OCR\\tesseract.exe'
 
 if not os.path.exists('data'):
     os.makedirs('data')
