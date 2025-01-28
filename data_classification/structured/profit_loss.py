@@ -89,16 +89,30 @@ def fetch_data_from_postgresql(db_name, user, password, host, port, table_name):
         print(f"Error fetching data from PostgreSQL: {e}")
         return None
 
+import os
+import pandas as pd
+import matplotlib.pyplot as plt
+import streamlit as st
+
 def create_visualizations(df, bar_chart_path, pie_chart_path):
+    # Ensure directories for saving charts exist
     os.makedirs(os.path.dirname(bar_chart_path), exist_ok=True)
     os.makedirs(os.path.dirname(pie_chart_path), exist_ok=True)
+    
+    # Check for required columns
     required_columns = ['Description', '2015', '2016', '2017']
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
         raise ValueError(f"Missing columns: {', '.join(missing_columns)}")
+    
+    # Drop rows with missing values in the year columns
     df = df.dropna(subset=['2015', '2016', '2017'])
     df.set_index('Description', inplace=True)
+    
+    # Ensure data is numeric
     df[['2015', '2016', '2017']] = df[['2015', '2016', '2017']].apply(pd.to_numeric, errors='coerce')
+
+    # Create the bar chart (line plot)
     plt.figure(figsize=(12, 6))
     df[['2015', '2016', '2017']].plot(kind='line', marker='o', linestyle='-', title='Yearly Financial Data')
     plt.ylabel('Amount')
@@ -106,13 +120,19 @@ def create_visualizations(df, bar_chart_path, pie_chart_path):
     plt.xticks(rotation=90)
     plt.grid(True)
     plt.tight_layout()
+
+    # Display and save the bar chart
     st.pyplot(plt)
     plt.savefig(bar_chart_path)  
-    plt.close()
+    plt.close()  # Close the plot to prevent further issues
+
+    # Create the pie chart
     df[['2015', '2016', '2017']].sum().plot(kind='pie', autopct='%1.1f%%', figsize=(8, 8), title='Yearly Financial Data - Pie Chart')
     plt.tight_layout()
+
+    # Display and save the pie chart
     st.pyplot(plt)
     plt.savefig(pie_chart_path)  
-    plt.close()
+    plt.close()  # Close the plot to prevent further issues
 
 
