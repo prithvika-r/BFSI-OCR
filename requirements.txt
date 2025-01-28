@@ -13,7 +13,7 @@ altair==5.0.1              # For advanced visualizations in Streamlit
 opencv-python-headless==4.8.0.76  #For advanced image processing
 regex
 torch==2.4.0      # For PyTorch-based machine learning
-Pillow==9.4.0   # For image handling
+Pillow==11.1.0  # For image handling
 SQLAlchemy>=1.4.0
 psycopg2-binary>=2.9.1
 
