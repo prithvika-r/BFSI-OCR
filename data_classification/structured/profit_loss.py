@@ -82,16 +82,34 @@ def fetch_data_from_postgresql(db_name, user, password, host, port, table_name):
         return None
 
 def create_visualizations(df, bar_chart_path, pie_chart_path):
-    print(f"DataFrame columns: {df.columns}")  # Add this line for debugging
+    # Check if df is None or empty
+    if df is None:
+        print("Error: DataFrame is None.")
+        return  # Exit if the DataFrame is None
+    
+    if df.empty:
+        print("Error: DataFrame is empty.")
+        return  # Exit if the DataFrame is empty
+    
+    # Debug: Print the DataFrame columns to ensure it's structured as expected
+    print(f"DataFrame columns: {df.columns}")
+    print(f"DataFrame preview:\n{df.head()}")  # Preview of the data
+
     os.makedirs(os.path.dirname(bar_chart_path), exist_ok=True)
     os.makedirs(os.path.dirname(pie_chart_path), exist_ok=True)
+
     required_columns = ['Description', '2015', '2016', '2017']
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
-        raise ValueError(f"Missing columns: {', '.join(missing_columns)}")
+        print(f"Missing columns: {', '.join(missing_columns)}")
+        return  # Exit if there are missing columns
+    
+    # Continue only if required columns exist
     df = df.dropna(subset=['2015', '2016', '2017'])
     df.set_index('Description', inplace=True)
     df[['2015', '2016', '2017']] = df[['2015', '2016', '2017']].apply(pd.to_numeric, errors='coerce')
+
+    # Plotting the line chart
     plt.figure(figsize=(12, 6))
     df[['2015', '2016', '2017']].plot(kind='line', marker='o', linestyle='-', title='Yearly Financial Data')
     plt.ylabel('Amount')
@@ -102,10 +120,10 @@ def create_visualizations(df, bar_chart_path, pie_chart_path):
     st.pyplot(plt)
     plt.savefig(bar_chart_path)  
     plt.close()
+
+    # Plotting the pie chart
     df[['2015', '2016', '2017']].sum().plot(kind='pie', autopct='%1.1f%%', figsize=(8, 8), title='Yearly Financial Data - Pie Chart')
     plt.tight_layout()
     st.pyplot(plt)
     plt.savefig(pie_chart_path)  
-    plt.close() 
-
-
+    plt.close()
