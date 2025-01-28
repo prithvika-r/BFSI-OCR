@@ -175,8 +175,8 @@ if data_type:
                     with open(image_path, "wb") as f:
                         f.write(uploaded_file.getbuffer())
 
-                            csv_output_path = "data/profit_loss_data.csv"
-                            profit_loss_data = extract_profit_loss_data(image_path, csv_output_path)
+                        csv_output_path = "data/profit_loss_data.csv"
+                        profit_loss_data = extract_profit_loss_data(image_path, csv_output_path)
 
                     if not profit_loss_data.empty:
                             st.write("### Extracted Profit and Loss Data")
