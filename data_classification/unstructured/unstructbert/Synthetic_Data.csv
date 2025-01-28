@@ -1,0 +1,152 @@
+Date, Description, Category
+01-11-2024, Swiggy, Food
+02-11-2024, Zomato, Food
+03-11-2024, McDonald's, Food
+04-11-2024, Starbucks, Food
+05-11-2024, BigBasket, Food
+06-11-2024, Grocery Store, Food
+07-11-2024, Foodpanda, Food
+08-11-2024, Pizza Hut, Food
+09-11-2024, KFC, Food
+10-11-2024, Dominos, Food
+11-11-2024, Subway, Food
+12-11-2024, Burger King, Food
+13-11-2024, Caf? Coffee Day, Food
+14-11-2024, Ice Cream Shop, Food
+15-11-2024, Restaurant meal, Food
+16-11-2024, Apartment rent payment, Rent
+17-11-2024, House EMI, Rent
+18-11-2024, Rent payment, Rent
+19-11-2024, Monthly house rent, Rent
+20-11-2024, Office rent, Rent
+21-11-2024, Rent deposit, Rent
+22-11-2024, Rent for studio apartment, Rent
+23-11-2024, House rent paid, Rent
+24-11-2024, Property rent, Rent
+25-11-2024, Rent dues, Rent
+26-11-2024, Rent agreement, Rent
+27-11-2024, Rent payment for flat, Rent
+28-11-2024, Rent for commercial space, Rent
+29-11-2024, Rent for vacation house, Rent
+30-11-2024, Paid house EMI, Rent
+01-12-2024, Paid electricity bill, Utilities
+02-12-2024, Internet bill, Utilities
+03-12-2024, Phone recharge, Utilities
+04-12-2024, Water bill, Utilities
+05-12-2024, Gas bill, Utilities
+06-12-2024, Paid internet bill, Utilities
+07-12-2024, Cable bill, Utilities
+08-12-2024, Electricity recharge, Utilities
+09-12-2024, Gas cylinder bill, Utilities
+10-12-2024, Mobile recharge, Utilities
+11-12-2024, Monthly water payment, Utilities
+12-12-2024, Paid phone bill, Utilities
+13-12-2024, Phone internet plan, Utilities
+14-12-2024, Electricity payment, Utilities
+15-12-2024, Myntra clothes, Shopping
+16-12-2024, BigBasket grocery shopping, Shopping
+17-12-2024, Amazon shopping, Shopping
+18-12-2024, Flipkart shopping, Shopping
+19-12-2024, Clothes shopping, Shopping
+20-12-2024, Bookstore purchase, Shopping
+21-12-2024, Grocery shopping, Shopping
+22-12-2024, Jewelry shopping, Shopping
+23-12-2024, Electronics purchase, Shopping
+24-12-2024, Furniture purchase, Shopping
+25-12-2024, Shoes shopping, Shopping
+26-12-2024, Christmas shopping, Shopping
+27-12-2024, Makeup shopping, Shopping
+28-12-2024, Furniture shopping, Shopping
+29-12-2024, Car accessory purchase, Shopping
+30-12-2024, Uber ride, Transport
+31-12-2024, Bus ticket, Transport
+01-01-2025, Rapido ride, Transport
+02-01-2025, Taxi ride, Transport
+03-01-2025, Fuel station, Transport
+04-01-2025, Train ticket, Transport
+05-01-2025, Air travel, Transport
+06-01-2025, Parking ticket, Transport
+07-01-2025, Car rental, Transport
+08-01-2025, Metro ride, Transport
+09-01-2025, Uber Eats, Transport
+10-01-2025, Boat ride, Transport
+11-01-2025, Bike rental, Transport
+12-01-2025, Plane ticket, Transport
+13-01-2025, Netflix subscription, Entertainment
+14-01-2025, Amazon Prime Video, Entertainment
+15-01-2025, Movie tickets, Entertainment
+16-01-2025, Spotify Premium, Entertainment
+17-01-2025, Gaming subscription, Entertainment
+18-01-2025, YouTube Premium, Entertainment
+19-01-2025, Hulu subscription, Entertainment
+20-01-2025, HBO Max, Entertainment
+21-01-2025, Disney+, Entertainment
+22-01-2025, Movie night, Entertainment
+23-01-2025, Theatre tickets, Entertainment
+24-01-2025, Concert tickets, Entertainment
+25-01-2025, Doctor consultation, Healthcare
+26-01-2025, Hospital bill, Healthcare
+27-01-2025, Pharmacy items, Healthcare
+28-01-2025, Health insurance, Healthcare
+29-01-2025, Medical check-up, Healthcare
+30-01-2025, Doctor's visit, Healthcare
+31-01-2025, Prescription medicine, Healthcare
+01-02-2025, Health check-up, Healthcare
+02-02-2025, Doctor visit, Healthcare
+03-02-2025, Online medical consultation, Healthcare
+04-02-2025, Health plan, Healthcare
+05-02-2025, School fees, Education
+06-02-2025, Online courses, Education
+07-02-2025, Udemy, Education
+08-02-2025, School tuition, Education
+09-02-2025, College fees, Education
+10-02-2025, Library books, Education
+11-02-2025, Mutual Funds, Savings & Investment
+12-02-2025, Stock Market, Savings & Investment
+13-02-2025, SIP, Savings & Investment
+14-02-2025, Bank Deposits, Savings & Investment
+15-02-2025, Gold investment, Savings & Investment
+16-02-2025, Bonds investment, Savings & Investment
+17-02-2025, Real estate investment, Savings & Investment
+18-02-2025, Cryptocurrency, Savings & Investment
+19-02-2025, Life Insurance, Insurance
+20-02-2025, Health Insurance, Insurance
+21-02-2025, Car Insurance, Insurance
+22-02-2025, Home Insurance, Insurance
+23-02-2025, Travel Insurance, Insurance
+24-02-2025, Renters Insurance, Insurance
+25-02-2025, Vacation planning, Travel
+26-02-2025, Flight Ticket, Travel
+27-02-2025, Hotel Booking, Travel
+28-02-2025, Travel Insurance, Travel
+01-03-2025, Travel accommodation, Travel
+02-03-2025, Flight booking, Travel
+03-03-2025, Travel package, Travel
+04-03-2025, Donations, Miscellaneous
+05-03-2025, Gift Purchases, Miscellaneous
+06-03-2025, Charity, Miscellaneous
+07-03-2025, One-time Payments, Miscellaneous
+08-03-2025, Event ticket, Miscellaneous
+09-03-2025, Subscription box, Miscellaneous
+10-03-2025, Auction purchase, Miscellaneous
+11-03-2025, Freelance payment, Miscellaneous
+12-03-2025, Donation to NGO, Miscellaneous
+13-03-2025, Surprise gift, Miscellaneous
+14-03-2025, Sponsorship, Miscellaneous
+15-03-2025, House renovation, Miscellaneous
+16-03-2025, Birthday gift, Miscellaneous
+17-03-2025, Car accessory purchase, Miscellaneous
+18-03-2025, Car service, Miscellaneous
+19-03-2025, Foodpanda, Food
+20-03-2025, Domino's, Food
+21-03-2025, Swiggy delivery, Food
+22-03-2025, McDonald's meal, Food
+23-03-2025, Starbucks coffee, Food
+24-03-2025, Grocery Store, Food
+25-03-2025, Pizza order, Food
+26-03-2025, Food delivery, Food
+27-03-2025, Takeaway, Food
+28-03-2025, Restaurant order, Food
+29-03-2025, Home delivery, Food
+30-03-2025, Burger meal, Food
+31-03-2025, Snack order, Food
