@@ -168,8 +168,8 @@ if data_type:
                     visualize_payslip_data(csv_output_path)
 					
    	    elif data_choice == "Profit and Loss":
-    		st.subheader("Structured Data: Profit and Loss OCR Upload")
-   			uploaded_file = st.file_uploader("Upload a Profit and Loss Image", type=["jpg", "jpeg", "png"])
+    	    st.subheader("Structured Data: Profit and Loss OCR Upload")
+   		    uploaded_file = st.file_uploader("Upload a Profit and Loss Image", type=["jpg", "jpeg", "png"])
 
 			    if uploaded_file:
             	    with st.spinner("Processing uploaded file..."):
