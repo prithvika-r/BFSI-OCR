@@ -52,6 +52,9 @@ def store_csv_to_postgresql(csv_file_path, db_name, user, password, host, port, 
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 def create_visualizationss(df, bar_chart_path, pie_chart_path):
     try:
         # Barplot with custom bar widths and spacing
@@ -64,7 +67,7 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
         bar_width = 0.7  # Adjust this for wider/narrower bars
 
         # Create the bars with custom width
-        plt.bar(bar_positions, df['Balance'], width=bar_width, color=plt.cm.viridis(np.linspace(0, 1, len(df))))
+        bars = plt.bar(bar_positions, df['Balance'], width=bar_width, color=plt.cm.viridis(np.linspace(0, 1, len(df))))
 
         # Add labels
         plt.title("Amount per Description", fontsize=16)
@@ -72,8 +75,8 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
         plt.ylabel("Balance", fontsize=14)
         plt.xticks(bar_positions, df['Description'], rotation=45, ha="right")
 
-        # Add the legend (or you can remove it if unnecessary)
-        plt.legend(title="Description", bbox_to_anchor=(1.05, 1), loc='upper left')
+        # Add the legend outside the plot (avoid overlap)
+        plt.legend(bars, df['Description'], title="Description", bbox_to_anchor=(1.05, 1), loc='upper left')
 
         # Adjust layout to prevent overlap
         plt.tight_layout()
@@ -91,19 +94,13 @@ def create_visualizationss(df, bar_chart_path, pie_chart_path):
             startangle=140,
             colors=plt.cm.Paired.colors
         )
-        plt.title("Distribution of Amounts", fontsize=20)
+        plt.title("Distribution of Amounts", fontsize=16)
         plt.tight_layout()
         plt.savefig(pie_chart_path)
         plt.show()
-        plt.close('all')
-        print(f"Visualizations saved: Bar chart ({bar_chart_path}), Pie chart ({pie_chart_path})")
-    except Exception as e:
-        print(f"Error creating visualizations: {e}")
-
 
         # Close all plots after saving
         plt.close('all')
         print(f"Visualizations saved: Bar chart ({bar_chart_path}), Pie chart ({pie_chart_path})")
     except Exception as e:
         print(f"Error creating visualizations: {e}")
-
