@@ -5,7 +5,7 @@ import pytesseract
 from PIL import Image
 import streamlit as st
 import os
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 def extract_profit_loss_data(image_path, csv_path):
     try:
         image = Image.open(image_path)
